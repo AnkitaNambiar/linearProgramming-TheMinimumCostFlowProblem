@@ -38,13 +38,13 @@ Minimize, 2*x1 + 5*x2 + 3*x3 + 1*x4 + 2*x5 + 2*x6 + 0*x7 + 4*x8
 ### Constraint Creation
 Set constraints. Make sure the movement of commodities meet the Node Limits. 
 
-###### Node 1 Example
+Node 1 Example:
 At Node 1, 5 goods are kept. To meet the limit, check the paths that lead into and out of Node 1. 
 Paths moving into Node 1: Path from Node 4 to Node 1 (x7)
 Paths moving out of Node 1: Path from Node 1 to 3 (x2), Path from Node 1 to 2 (x1)
 Since Node 1 takes 5 goods, the total goods at Node 1 is: x7 - x1 - x2 - 5 = 0, as written below.
 
-###### Total Constraints
+Total Constraints
 Node 1: x7 - x1 - x2 = 5
 Node 2: x1 + x8 - x3 = -10
 Node 3: x3 + x2 - x4 - x5 = 0
@@ -52,17 +52,15 @@ Node 4: x4 - x7 - x6 = 2
 Node 5: x5 + x6 - x8 = 3
 Upper Goods Limit for Path 5: x5 <= 1
 
-###### The solution shows us that the path usage at the equilibrium state where the minimimum cost flow occurs.
 In Julia, I used linear programming with the above equations and got the output:
 
 <img width="205" alt="Screenshot 2023-02-10 at 8 43 15 PM" src="https://user-images.githubusercontent.com/105748980/218240454-d2c05f8a-489b-4370-b96c-7bb184116ce7.png">
 
 # Solution Explained
 
-###### The minimum cost for the network's flow is 45. 
-The minimized flow, only uses paths x3, x4, x5, x6, and x7. 
+The solution shows us that the path usage at the equilibrium state where the minimimum cost flow occurs. The minimum cost for the network's flow is 45. The minimized flow, only uses paths x3, x4, x5, x6, and x7. 
 
-###### The values for each variable represent the number of times the path is used in the flow:
+The values for each variable represent the number of times the path is used in the flow:
 x3 = (2,3) = 10 times
 x4 = (3,4) = 9 times
 x5 = (3,5) = 1 time
